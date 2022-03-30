@@ -1,6 +1,6 @@
 {
-  "name": "BByteSolutions.com",
-  "short_name": "BByteSolutions.com",
+  "name": "BByteSolutions",
+  "short_name": "BByteSolutions",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
