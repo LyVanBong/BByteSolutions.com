@@ -3,9 +3,6 @@ version: '3.5'
 services:
   bbytesolutions:
     image: bonglv/bbytesolutions.com:1.0
-    ports:
-    - 30001:80
-    - 30002:443
     labels:
       - traefik.enable=true
       - traefik.http.routers.bbytesolutions.rule=Host('home.bbytegroup.com')
