@@ -4,7 +4,11 @@ services:
   bbytesolutions:
     image: bonglv/bbytesolutions.com:1.0
     labels:
-      - "traefik.http.routers.bbytesolutions.rule=Host('home.bbytegroup.com')"
+      - traefik.enable=true
+      - traefik.http.routers.bbytesolutions.rule=Host('home.bbytegroup.com')
+      - traefik.http.routers.bbytesolutions.entrypoints=web
+      - traefik.http.routers.bbytesolutions.service=bbytesolutions
+      - traefik.http.routers.bbytesolutions.loadbalancer.server.port=300001
     networks:
       - traefik-public
     deploy: 
