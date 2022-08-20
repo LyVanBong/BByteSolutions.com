@@ -3,6 +3,10 @@ version: '3.5'
 services:
   bbytesolutions:
     image: bonglv/bbytesolutions.com:1.0
+    ports:
+    # Exposes port 80 for incomming web requests
+    - 80:80
+    - 443:443
     labels:
       - traefik.enable=true
       - traefik.http.routers.bbytesolutions.rule=Host('home.bbytegroup.com')
