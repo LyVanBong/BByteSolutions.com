@@ -1,15 +1,15 @@
-version: '3.5'
+version: '3.8'
 
 services:
   bbytesolutions:
     image: bonglv/bbytesolutions.com:1.0
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.bbytesolutions.rule=Host('home.bbytegroup.com')
-      - traefik.http.routers.bbytesolutions.entrypoints=web
-      - traefik.http.routers.bbytesolutions.service=bbytesolutions
-      - traefik.http.services.bbytesolutions.loadbalancer.server.port=30001
-      - traefik.docker.network=traefik-public
+      - "traefik.enable=true"
+      - "traefik.http.routers.bbytesolutions.rule=Host('home.bbytegroup.com')"
+      - "traefik.http.routers.bbytesolutions.entrypoints=web"
+      - "traefik.http.routers.bbytesolutions.service=catapp"
+      - "traefik.http.services.bbytesolutions.loadbalancer.server.port=30000"
+      - "traefik.docker.network=traefik-public"
     networks:
       - traefik-public
     deploy: 
