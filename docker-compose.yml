@@ -3,8 +3,6 @@ version: '3.5'
 services:
   bbytesolutions:
     image: bonglv/bbytesolutions.com:1.0
-    ports:
-      -30001:80
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik-public
@@ -16,7 +14,7 @@ services:
       - traefik.http.routers.bbytesolutions-https.entrypoints=https
       - traefik.http.routers.bbytesolutions-https.tls=true
       - traefik.http.routers.bbytesolutions-https.tls.certresolver=le
-      - traefik.http.services.bbytesolutions.loadbalancer.server.port=30002
+      - traefik.http.services.bbytesolutions.loadbalancer.server.port=9999
     networks:
       - traefik-public
     deploy: 
