@@ -8,7 +8,6 @@ services:
       - traefik.http.routers.bbytesolutions.tls.certresolver: le
       - traefik.http.routers.bbytesolutions.middlewares: https-redirect
       - traefik.http.routers.bbytesolutions.tls: 'true'
-      - traefik.constraint-label: traefik-public
       - traefik.http.services.bbytesolutions.loadbalancer.server.port: '30000'
       - traefik.http.routers.bbytesolutions.entrypoints: http
       - traefik.http.routers.bbytesolutions.rule: Host('home.bbytegroup.com')
