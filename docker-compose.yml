@@ -3,6 +3,8 @@ version: '3.5'
 services:
   bbytesolutions:
     image: bonglv/bbytesolutions.com:1.0
+    ports:
+      -30001:80
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik-public
