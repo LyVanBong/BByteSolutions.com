@@ -1,19 +1,19 @@
-version: '3.8'
+version: '3.5'
 
 services:
   bbytesolutions:
     image: bonglv/bbytesolutions.com:1.0
     labels:
-      - "traefik.http.routers.bbytesolutions.entrypoints: https"
-      - "traefik.http.routers.bbytesolutions.tls.certresolver: le"
-      - "traefik.http.routers.bbytesolutions.middlewares: https-redirect"
-      - "traefik.http.routers.bbytesolutions.tls: 'true'"
-      - "traefik.http.services.bbytesolutions.loadbalancer.server.port: '30000'"
-      - "traefik.http.routers.bbytesolutions.entrypoints: http"
-      - "traefik.http.routers.bbytesolutions.rule: Host('home.bbytegroup.com')"
-      - "traefik.docker.network: traefik-public"
-      - "traefik.enable: 'true'"
-      - "traefik.http.routers.bbytesolutions.rule: Host('home.bbytegroup.com')"
+      - traefik.http.routers.bbytesolutions.entrypoints: https
+      - traefik.http.routers.bbytesolutions.tls.certresolver: le
+      - traefik.http.routers.bbytesolutions.middlewares: https-redirect
+      - traefik.http.routers.bbytesolutions.tls: true
+      - traefik.http.services.bbytesolutions.loadbalancer.server.port: 30000
+      - traefik.http.routers.bbytesolutions.entrypoints: http
+      - traefik.http.routers.bbytesolutions.rule: Host('home.bbytegroup.com')
+      - traefik.docker.network: traefik-public
+      - traefik.enable: true
+      - traefik.http.routers.bbytesolutions.rule: Host('home.bbytegroup.com')
     networks:
       - traefik-public
     deploy: 
