@@ -1,0 +1,15 @@
+version: '3.5'
+
+services:
+  bbytesolutions:
+    image: bonglv/bbytesolutions.com
+    labels:
+      - "traefik.http.routers.bbytesolutions.rule=Host('home.bbytegroup.com')"
+    networks:
+      - traefik-public
+    deploy: 
+      mode: replicated
+      replicas: 2
+networks:
+  traefik-public:
+    external: true
