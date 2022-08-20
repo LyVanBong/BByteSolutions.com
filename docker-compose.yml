@@ -4,17 +4,17 @@ services:
   bbytesolutions:
     image: bonglv/bbytesolutions.com:1.0
     labels:
-      - traefik.http.routers.bbytesolutions-https.entrypoints: https
-      - traefik.http.routers.bbytesolutions-https.tls.certresolver: le
-      - traefik.http.routers.bbytesolutions-http.middlewares: https-redirect
-      - traefik.http.routers.bbytesolutions-https.tls: 'true'
+      - traefik.http.routers.bbytesolutions.entrypoints: https
+      - traefik.http.routers.bbytesolutions.tls.certresolver: le
+      - traefik.http.routers.bbytesolutions.middlewares: https-redirect
+      - traefik.http.routers.bbytesolutions.tls: 'true'
       - traefik.constraint-label: traefik-public
       - traefik.http.services.bbytesolutions.loadbalancer.server.port: '30000'
-      - traefik.http.routers.bbytesolutions-http.entrypoints: http
-      - traefik.http.routers.bbytesolutions-http.rule: Host('home.bbytegroup.com')
+      - traefik.http.routers.bbytesolutions.entrypoints: http
+      - traefik.http.routers.bbytesolutions.rule: Host('home.bbytegroup.com')
       - traefik.docker.network: traefik-public
       - traefik.enable: 'true'
-      - traefik.http.routers.bbytesolutions-https.rule: Host('home.bbytegroup.com')
+      - traefik.http.routers.bbytesolutions.rule: Host('home.bbytegroup.com')
     networks:
       - traefik-public
     deploy: 
