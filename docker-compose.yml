@@ -18,6 +18,9 @@ services:
     networks:
       - traefik-public
     deploy: 
+      placement:
+          constraints:
+            - node.labels.portainer.portainer-data == true
       resources:
         limits:
           cpus: '0.30'
