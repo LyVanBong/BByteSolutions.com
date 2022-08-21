@@ -3,7 +3,6 @@ version: '3.8'
 services:
   app-home:
     image: bonglv/home:latest
-    container_name: app-home
     environment:
       - HOSTNAME=home.bbytegroup.com
     volumes:
