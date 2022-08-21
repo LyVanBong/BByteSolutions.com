@@ -17,6 +17,6 @@ EXPOSE 80
 
 ENTRYPOINT ["/usr/sbin/httpd", "-D", "FOREGROUND"]
 
-#docker build -t bbytesolutions.com:latest -f Dockerfile .
-# docker tag bbytesolutions.com:1.0 bonglv/bbytesolutions.com:1.0
-# docker push bonglv/bbytesolutions.com:1.0
+#docker build -t home:latest -f Dockerfile .
+# docker tag home:latest bonglv/home:latest
+# docker push bonglv/home:latest

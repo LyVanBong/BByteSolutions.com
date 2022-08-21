@@ -1,15 +1,32 @@
-version: '3.3'
+version: '3.8'
 
 services:
-  app:
-    image: bonglv/bbytesolutions.com:1.0
+  app-home:
+    image: bonglv/home:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - traefik-public
     deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 1024M
+        reservations:
+          cpus: '0.25'
+          memory: 512M
       labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.app.rule=Host('home.bbytesgroup.com')"
-      - "traefik.http.routers.app.entrypoints=websecure"
+        - traefik.enable=true
+        - traefik.docker.network=traefik-public
+        - traefik.constraint-label=traefik-public
+        - traefik.http.routers.app-home-http.rule=Host(`${DOMAIN?Variable not set}`)
+        - traefik.http.routers.app-home-http.entrypoints=http
+        - traefik.http.routers.app-home-http.middlewares=https-redirect
+        - traefik.http.routers.app-home-https.rule=Host(`${DOMAIN?Variable not set}`)
+        - traefik.http.routers.app-home-https.entrypoints=https
+        - traefik.http.routers.app-home-https.tls=true
+        - traefik.http.routers.app-home-https.tls.certresolver=le
+        - traefik.http.services.app-home.loadbalancer.server.port=8080
 networks:
   traefik-public:
     external: true
