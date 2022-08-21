@@ -8,6 +8,7 @@ services:
     labels:
       - 'traefik.enable=true'
       - 'traefik.http.services.bbytesolutions.loadbalancer.server.port=9999'
+      - 'traefik.http.routers.traefik-public-http.rule=Host:home.bbyegroup.com'
     networks:
       - traefik-public
     ports:
