@@ -3,6 +3,9 @@ version: '3.8'
 services:
   app-home:
     image: bonglv/home:latest
+    container_name: app-home
+    environment:
+      - HOSTNAME=home.bbytegroup.com
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
@@ -26,7 +29,7 @@ services:
         - traefik.http.routers.app-home-https.entrypoints=https
         - traefik.http.routers.app-home-https.tls=true
         - traefik.http.routers.app-home-https.tls.certresolver=le
-        - traefik.http.services.app-home.loadbalancer.server.port=8080
+        - traefik.http.services.app-home.loadbalancer.server.port=9999
 networks:
   traefik-public:
     external: true
