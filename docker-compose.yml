@@ -10,7 +10,7 @@ services:
       - './traefik/acme.json:/acme.json'
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.services.bbytesolutions.com.loadbalancer.server.port=9999'
+      - 'traefik.http.services.bbytesolutions.loadbalancer.server.port=9999'
     networks:
       - traefik-public
     ports:
