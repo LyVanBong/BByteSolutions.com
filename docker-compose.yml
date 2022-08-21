@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app-home:
-    image: bonglv/home:latest
+    image: wordpress:4.9.8-apache
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
@@ -27,6 +27,17 @@ services:
         - traefik.http.routers.app-home-https.tls=true
         - traefik.http.routers.app-home-https.tls.certresolver=le
         - traefik.http.services.app-home.loadbalancer.server.port=8080
+      depends_on:
+          - mysql
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD:
+    networks:
+      - traefik-public
+    labels:
+      - traefik.enable=false
 networks:
   traefik-public:
     external: true
