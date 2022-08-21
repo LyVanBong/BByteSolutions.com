@@ -3,6 +3,8 @@ version: '3.5'
 services:
   bbytesolutions:
     image: bonglv/bbytesolutions.com:1.0
+    networks:
+      - traefik-public
     ports:
       - 9999:80
     deploy: 
@@ -15,3 +17,6 @@ services:
           memory: 256M
       mode: replicated
       replicas: 2
+networks:
+  traefik-public:
+    external: true
