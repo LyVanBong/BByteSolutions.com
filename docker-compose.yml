@@ -6,11 +6,17 @@ services:
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock:ro'
     labels:
-      - 'traefik.enable=true'
-      - 'traefik.http.services.bbytesolutions.loadbalancer.server.port=9999'
-      - 'traefik.http.routers.bbytesolutions-http.entrypoints=http'
-      - 'traefik.http.routers.bbytesolutions-http.rule=Host:home.bbyegroup.com'
-      - 'traefik.http.routers.bbytesolutions-https.tls.certresolver=le'
+        - traefik.enable=true
+        - traefik.docker.network=traefik-public
+        - traefik.constraint-label=traefik-public
+        - traefik.http.routers.bbytesolutions.com-http.rule=Host('home.bbytegroup.com')
+        - traefik.http.routers.bbytesolutions.com-http.entrypoints=http
+        - traefik.http.routers.bbytesolutions.com-http.middlewares=https-redirect
+        - traefik.http.routers.bbytesolutions.com-https.rule=Host('home.bbytegroup.com')
+        - traefik.http.routers.bbytesolutions.com-https.entrypoints=https
+        - traefik.http.routers.bbytesolutions.com-https.tls=true
+        - traefik.http.routers.bbytesolutions.com-https.tls.certresolver=le
+        - traefik.http.services.bbytesolutions.com.loadbalancer.server.port=9999
     networks:
       - traefik-public
     ports:
