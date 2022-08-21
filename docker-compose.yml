@@ -3,6 +3,8 @@ version: '3.8'
 services:
   home:
     image: bonglv/home:latest
+    ports:
+      - "8080:80"
     environment:
       - HOSTNAME=home.bbytegroup.com
     volumes:
@@ -31,6 +33,7 @@ services:
         - traefik.http.routers.home-https.tls=true
         - traefik.http.routers.home-https.tls.certresolver=le
         - traefik.http.services.home.loadbalancer.server.port=8080
+        - traefik.port=80
 networks:
   traefik-public:
     external: true
