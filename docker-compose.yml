@@ -11,7 +11,7 @@ services:
       - traefik-public
     deploy:
       mode: replicated
-      replicas: 1
+      replicas: 2
       resources:
         limits:
           cpus: '0.50'
@@ -30,8 +30,7 @@ services:
         - traefik.http.routers.home-https.entrypoints=https
         - traefik.http.routers.home-https.tls=true
         - traefik.http.routers.home-https.tls.certresolver=le
-        - traefik.http.services.home.loadbalancer.server.port=9999
-        - traefik.http.services.ombi.loadbalancer.server.scheme=https
+        - traefik.http.services.home.loadbalancer.server.port=8080
 networks:
   traefik-public:
     external: true
