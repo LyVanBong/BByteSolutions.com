@@ -3,6 +3,14 @@ version: '3.5'
 services:
   bbytesolutions:
     image: bonglv/bbytesolutions.com:1.0
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock:ro'
+      - './traefik/traefik.toml:/traefik.toml'
+      - './traefik/traefik_dynamic.toml:/traefik_dynamic.toml'
+      - './traefik/acme.json:/acme.json'
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.services.bbytesolutions.com.loadbalancer.server.port=9999'
     networks:
       - traefik-public
     ports:
