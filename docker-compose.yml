@@ -1,36 +1,32 @@
-version: '3.5'
+version: '3.3'
 
 services:
-  bbytesolutions:
+  app:
     image: bonglv/bbytesolutions.com:1.0
     volumes:
-      - '/var/run/docker.sock:/var/run/docker.sock:ro'
-    labels:
+      - bbytes-data:/var/opt/bbytes
+    networks:
+      - traefik-public
+    deploy:
+      placement:
+        constraints:
+          - node.labels.bbytes.bbytes-data == true
+      labels:
         - traefik.enable=true
         - traefik.docker.network=traefik-public
         - traefik.constraint-label=traefik-public
-        - traefik.http.routers.bbytesolutions.com-http.rule=Host('home.bbytegroup.com')
-        - traefik.http.routers.bbytesolutions.com-http.entrypoints=http
-        - traefik.http.routers.bbytesolutions.com-http.middlewares=https-redirect
-        - traefik.http.routers.bbytesolutions.com-https.rule=Host('home.bbytegroup.com')
-        - traefik.http.routers.bbytesolutions.com-https.entrypoints=https
-        - traefik.http.routers.bbytesolutions.com-https.tls=true
-        - traefik.http.routers.bbytesolutions.com-https.tls.certresolver=le
-        - traefik.http.services.bbytesolutions.com.loadbalancer.server.port=9999
-    networks:
-      - traefik-public
-    ports:
-      - 9999:80
-    deploy: 
-      resources:
-        limits:
-          cpus: '0.30'
-          memory: 512M
-        reservations:
-          cpus: '0.15'
-          memory: 256M
-      mode: replicated
-      replicas: 2
+        - traefik.http.routers.bbytes-http.rule=Host(`${DOMAIN?Variable not set}`)
+        - traefik.http.routers.bbytes-http.entrypoints=http
+        - traefik.http.routers.bbytes-http.middlewares=https-redirect
+        - traefik.http.routers.bbytes-https.rule=Host(`${DOMAIN?Variable not set}`)
+        - traefik.http.routers.bbytes-https.entrypoints=https
+        - traefik.http.routers.bbytes-https.tls=true
+        - traefik.http.routers.bbytes-https.tls.certresolver=le
+        - traefik.http.services.bbytes.loadbalancer.server.port=9000
+
 networks:
   traefik-public:
     external: true
+
+volumes:
+  bbytes-data:
