@@ -3,19 +3,8 @@ version: '3.5'
 services:
   bbytesolutions:
     image: bonglv/bbytesolutions.com:1.0
-    labels:
-      - "traefik.enable=true"
-      - "traefik.docker.network=traefik-public"
-      - "traefik.http.routers.bbytesolutions-http.rule=Host:home.bbytegroup.com"
-      - "traefik.http.routers.bbytesolutions-http.entrypoints=http"
-      - "traefik.http.routers.bbytesolutions-http.middlewares=https-redirect"
-      - "traefik.http.routers.bbytesolutions-https.rule=Host:home.bbytegroup.com"
-      - "traefik.http.routers.bbytesolutions-https.entrypoints=https"
-      - "traefik.http.routers.bbytesolutions-https.tls=true"
-      - "traefik.http.routers.bbytesolutions-https.tls.certresolver=le"
-      - "traefik.http.services.bbytesolutions.loadbalancer.server.port=88888"
-    networks:
-      - traefik-public
+    ports:
+      - 9999:80
     deploy: 
       resources:
         limits:
@@ -26,6 +15,3 @@ services:
           memory: 256M
       mode: replicated
       replicas: 2
-networks:
-  traefik-public:
-    external: true
