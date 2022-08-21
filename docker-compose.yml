@@ -19,10 +19,10 @@ services:
         - traefik.enable=true
         - traefik.docker.network=traefik-public
         - traefik.constraint-label=traefik-public
-        - traefik.http.routers.app-home-http.rule=Host(`${DOMAIN?Variable not set}`)
+        - traefik.http.routers.app-home-http.rule=Host(`home.bbytegroup.com`)
         - traefik.http.routers.app-home-http.entrypoints=http
         - traefik.http.routers.app-home-http.middlewares=https-redirect
-        - traefik.http.routers.app-home-https.rule=Host(`${DOMAIN?Variable not set}`)
+        - traefik.http.routers.app-home-https.rule=Host(`home.bbytegroup.com`)
         - traefik.http.routers.app-home-https.entrypoints=https
         - traefik.http.routers.app-home-https.tls=true
         - traefik.http.routers.app-home-https.tls.certresolver=le
