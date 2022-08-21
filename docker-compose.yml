@@ -15,10 +15,10 @@ services:
         - traefik.enable=true
         - traefik.docker.network=traefik-public
         - traefik.constraint-label=traefik-public
-        - traefik.http.routers.bbytes-http.rule=Host(`${DOMAIN?Variable not set}`)
+        - traefik.http.routers.bbytes-http.rule=Host(`home.bbytegroup.com`)
         - traefik.http.routers.bbytes-http.entrypoints=http
         - traefik.http.routers.bbytes-http.middlewares=https-redirect
-        - traefik.http.routers.bbytes-https.rule=Host(`${DOMAIN?Variable not set}`)
+        - traefik.http.routers.bbytes-https.rule=Host(`home.bbytegroup.com`)
         - traefik.http.routers.bbytes-https.entrypoints=https
         - traefik.http.routers.bbytes-https.tls=true
         - traefik.http.routers.bbytes-https.tls.certresolver=le
