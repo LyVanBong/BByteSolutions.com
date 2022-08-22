@@ -3,8 +3,8 @@ version: '3.8'
 services:
   home:
     image: bonglv/home:latest
-    ports:
-      - "8080:80"
+    # ports:
+    #   - "8080:80"
     environment:
       - HOSTNAME=home.bbytegroup.com
     volumes:
