@@ -12,6 +12,9 @@ services:
     networks:
       - traefik-public
     deploy:
+      placement:
+        constraints:
+          - node.labels.home-data == true
       mode: replicated
       replicas: 2
       resources:
@@ -25,15 +28,14 @@ services:
         - traefik.enable=true
         - traefik.docker.network=traefik-public
         - traefik.constraint-label=traefik-public
-        - traefik.http.routers.home-http.rule=Host(`home.bbytegroup.com`)
+        - traefik.http.routers.home-http.rule=Host(`${DOMAIN?Variable not set}`)
         - traefik.http.routers.home-http.entrypoints=http
         - traefik.http.routers.home-http.middlewares=https-redirect
-        - traefik.http.routers.home-https.rule=Host(`home.bbytegroup.com`)
+        - traefik.http.routers.home-https.rule=Host(`${DOMAIN?Variable not set}`)
         - traefik.http.routers.home-https.entrypoints=https
         - traefik.http.routers.home-https.tls=true
         - traefik.http.routers.home-https.tls.certresolver=le
         - traefik.http.services.home.loadbalancer.server.port=8080
-        - traefik.port=80
 networks:
   traefik-public:
     external: true
