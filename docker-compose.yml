@@ -3,12 +3,8 @@ version: '3.8'
 services:
   home:
     image: bonglv/home:latest
-    # ports:
-    #   - "8080:80"
     environment:
-      - HOSTNAME=home.bbytegroup.com
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - HOSTNAME=demo1.bbytesolutions.com
     networks:
       - traefik-public
     deploy:
@@ -28,10 +24,10 @@ services:
         - traefik.enable=true
         - traefik.docker.network=traefik-public
         - traefik.constraint-label=traefik-public
-        - traefik.http.routers.home-http.rule=Host(`${DOMAIN?Variable not set}`)
+        - traefik.http.routers.home-http.rule=Host(`demo1.bbytesolutions.com`)
         - traefik.http.routers.home-http.entrypoints=http
         - traefik.http.routers.home-http.middlewares=https-redirect
-        - traefik.http.routers.home-https.rule=Host(`${DOMAIN?Variable not set}`)
+        - traefik.http.routers.home-https.rule=Host(`demo1.bbytesolutions.com`)
         - traefik.http.routers.home-https.entrypoints=https
         - traefik.http.routers.home-https.tls=true
         - traefik.http.routers.home-https.tls.certresolver=le
