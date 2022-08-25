@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   web1:
-    image: bbytegroupcom/website-templates:v1
+    image: bbytegroup/website-templates:v1
     hostname: web_1
     networks:
       - traefik-public
